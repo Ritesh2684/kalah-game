@@ -66,11 +66,18 @@ Invalid input or turn taken results in bad request i.e. status code 400. Below a
 
 # Improvements Possible
 
-* Ideally the api to play the game should also accept playerId, to identify and validate whether
+
+* Api to play the turn should also accept playerId, to identify and validate whether
 	- is the next url triggered by correct player
 	- is the right pit id selected by right player
 	
 * Caching with simple Map could be replaced with distributed caching i.e. Hazelcast , EhCache or persistent storage to analyse the previous games.
+
+* More validation could added for gameId, pitId, like it should only be integer etc.
+
+* More tests could be added
+
+
 
 	
 	
