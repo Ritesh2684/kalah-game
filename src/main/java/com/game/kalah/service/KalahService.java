@@ -80,6 +80,8 @@ public class KalahService {
 				
 				kalahRuleEngine.forEach(kalahRule -> kalahRule.applyRule(kalah));
 				
+				log.info("Kalah state is " + kalah);
+				
 				log.debug("Saving Kalah object to Cache");
 				kalahCache.save(kalah);
 
