@@ -49,16 +49,11 @@ public class CheckGameStatus implements KalahRule {
 			log.info("Game has finished, calculating final scores and winner");
 			// sum of pits and home
 			int sumOfStonesNorthPlayer = calculateFinalScore(kalah, Player.NORTH);
-
 			log.debug("Final Sum of North Player is {} ", sumOfStonesNorthPlayer);
-
 			// sum of pits and home
 			int sumOfStonesSouthPlayer = calculateFinalScore(kalah, Player.SOUTH);
-
 			log.debug("Final Sum of North Player is {} ", sumOfStonesSouthPlayer);
-
 			setFinalPitPositions(kalah, sumOfStonesNorthPlayer, sumOfStonesSouthPlayer);
-
 			compareScoresAndSetWinner(kalah);
 
 			// remove game from cache

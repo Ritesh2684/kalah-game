@@ -62,16 +62,12 @@ public class KalahController {
 	public ResponseEntity<Object> startGame() throws KalahServiceException {
 
 		log.debug("Start method startKalah");
-
 		Kalah kalah = kalahService.startGame();
-
 		System.out.println("Kalah is " + kalah);
 
 		Link uri = linkTo(methodOn(KalahController.class).startGame()).slash(kalah.getGameId()).withSelfRel();
 
 		log.info("Game successfully initiated");
-
-		log.debug("End method startKalah");
 
 		Map<String, Object> response = new HashMap<>();
 		response.put(KalahConstants.ID, kalah.getGameId());
@@ -95,7 +91,6 @@ public class KalahController {
 		try {
 
 			Kalah kalah = kalahService.playTurn(gameId, pitId);
-
 			populatePitStatus(pitStatus, kalah.getPits());
 
 			Link uri = linkTo(methodOn(KalahController.class).startGame()).slash(kalah.getGameId()).withSelfRel();
@@ -105,10 +100,8 @@ public class KalahController {
 			response.put(KalahConstants.STATUS, pitStatus);
 
 		} catch (KalahServiceException kalahServiceException) {
-			
 			log.error("Exception while executing Turn", kalahServiceException);
 			return new ResponseEntity<Object>(kalahServiceException.getMessage(), HttpStatus.BAD_REQUEST);
-
 		}
 
 		return new ResponseEntity<Object>(response, HttpStatus.OK);
@@ -123,11 +116,9 @@ public class KalahController {
 	 * @return response populated from pits
 	 */
 	private Map<Integer, Integer> populatePitStatus(Map<Integer, Integer> pitStatus, int[] pits) {
-
+		
 		IntStream.range(0, pits.length).forEachOrdered(pitId -> pitStatus.put(pitId + 1, pits[pitId]));
-
 		return pitStatus;
-
 	}
 
 }

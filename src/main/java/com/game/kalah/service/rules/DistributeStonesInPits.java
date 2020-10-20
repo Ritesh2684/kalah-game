@@ -1,5 +1,7 @@
 package com.game.kalah.service.rules;
 
+import java.util.stream.IntStream;
+
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -32,35 +34,29 @@ public class DistributeStonesInPits implements KalahRule {
 
 		int selectedPit = kalah.getSelectedPit();
 		int[] pits = kalah.getPits();
-		
+
 		log.debug("Distributing stones from the selected pit {}", selectedPit);
 		// if there are no stones in the selected pit, then last pit will be same as
 		// selected pit
 		int nextPit = selectedPit;
-
 		// total number of stones to be distributed
 		int noOfStonesInPit = pits[selectedPit];
-
 		// remove stones from selected pit
 		pits[selectedPit] = 0;
 
 		for (int stones = 0; stones < noOfStonesInPit; stones++) {
 
 			nextPit++;
-
 			// verify pit position and skip home of opposite player
 			nextPit = skipOppositePlayerHome(kalah, nextPit);
-
 			// verify pit position and reset if greater than total number of Pit Positions
 			nextPit = resetPitPosition(nextPit);
-
 			pits[nextPit] += 1;
 
 		}
 
 		// set last pit position
 		kalah.setLastPitPosition(nextPit);
-		
 		log.debug("Last seeded pit is {}", kalah.getLastPitPosition());
 
 	}

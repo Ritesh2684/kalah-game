@@ -21,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 public class KalahService {
 
 	KalahCacheManager kalahCache = KalahCacheManager.getCache();
-
 	KalahHelper kalahServiceHelper = new KalahHelper();
 
 	@Autowired
@@ -60,16 +59,15 @@ public class KalahService {
 	public Kalah playTurn(String gameIdInput, String pitIdInput) throws KalahServiceException{
 		
 		int gameId = Integer.valueOf(gameIdInput);
-
+		
 		// subtract 1 to match with array position
 		int pitId = Integer.valueOf(pitIdInput) - 1;
-
 		Kalah kalah = kalahCache.get(Integer.valueOf(gameId));
 		
 		if(null != kalah) {
 			
 			kalah.setCurrentPlayer(null);
-
+			
 			if (GameStatus.INPROGRESS.equals(kalah.getStatus())) {
 
 				kalahServiceHelper.identifyPlayer(kalah, pitId);

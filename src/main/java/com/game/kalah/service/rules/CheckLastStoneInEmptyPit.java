@@ -47,11 +47,10 @@ public class CheckLastStoneInEmptyPit implements KalahRule {
 			// if last stone has landed in player's own pit
 			if (pits[kalah.getLastPitPosition()] == 1
 					&& kalahHelper.isPlayersPit(kalah.getLastPitPosition(), currentPlayer)) {
-
+				
 				log.debug("Last stone has landed in players own empty pit, updating scores");
 				// add last pit and opposite pit stones to Kalah
 				addLastAndOppositePitStonesToKalah(kalah, pits, currentPlayer);
-
 				// reset last and opposite pit to Zero
 				setLastAndOppositePitToZero(kalah, pits);
 
@@ -70,10 +69,8 @@ public class CheckLastStoneInEmptyPit implements KalahRule {
 	private void setLastAndOppositePitToZero(Kalah kalah, int[] pits) {
 
 		int oppositePitPosition = getOppositePitId(kalah.getLastPitPosition());
-
 		// set opposite pit value to 0
 		pits[oppositePitPosition] = 0;
-
 		// set last pit position to 0
 		pits[kalah.getLastPitPosition()] = 0;
 	}
@@ -88,12 +85,9 @@ public class CheckLastStoneInEmptyPit implements KalahRule {
 	private void addLastAndOppositePitStonesToKalah(Kalah kalah, int[] pits, Player currentPlayer) {
 
 		int oppositePitPosition = getOppositePitId(kalah.getLastPitPosition());
-
 		log.debug("Opposite pit id identified {} ", oppositePitPosition);
-
 		// add last pit and opponent's stones to current player's Kalah
 		pits[currentPlayer.getHomePit()] += pits[oppositePitPosition] + pits[kalah.getLastPitPosition()];
-
 		log.debug("Updated home pit score {}", pits[currentPlayer.getHomePit()]);
 
 	}
