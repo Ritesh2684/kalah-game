@@ -16,6 +16,7 @@ Application also persists the state of the Kalah in Cache to enable interaction 
 * Spring Boot
 * Lombok
 * JUnit
+* Mockito
 * Tomcat 8
 * Swagger
 
@@ -73,7 +74,9 @@ Invalid input or turn taken results in bad request i.e. status code 400. Below a
 	
 * Caching with simple Map could be replaced with distributed caching i.e. Hazelcast , EhCache or persistent storage to analyse the previous games.
 
-* More validation could added for gameId, pitId, like it should only be integer etc.
+* More validation could added for gameId, pitId, like it should only be integer, range etc.
+
+* Error message could be presented in JSON Format with fields like erroCode, errorMessage using @ControllerAdvice annotation.
 
 * More tests could be added
 

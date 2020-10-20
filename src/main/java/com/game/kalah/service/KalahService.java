@@ -51,17 +51,13 @@ public class KalahService {
 	 * 3. verify the game status
 	 * 4. When game is over, identifies the winner
 	 * 
-	 * @param gameIdInput id of the game
-	 * @param pitIdInput  id of the selected pit
+	 * @param gameId id of the game
+	 * @param pitId  id of the selected pit
 	 * @return kalah {@link Kalah}
 	 * @throws kalahServiceException {@link KalahServiceException}
 	 */
-	public Kalah playTurn(String gameIdInput, String pitIdInput) throws KalahServiceException{
+	public Kalah playTurn(int gameId, int pitId) throws KalahServiceException{
 		
-		int gameId = Integer.valueOf(gameIdInput);
-		
-		// subtract 1 to match with array position
-		int pitId = Integer.valueOf(pitIdInput) - 1;
 		Kalah kalah = kalahCache.get(Integer.valueOf(gameId));
 		
 		if(null != kalah) {

@@ -46,8 +46,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RestController
-@CrossOrigin
-@Validated
 public class KalahController {
 
 	@Autowired
@@ -87,10 +85,15 @@ public class KalahController {
 
 		Map<String, Object> response = new HashMap<>();
 		Map<Integer, Integer> pitStatus = new HashMap<>();
+		
+		int gameIdInput = Integer.valueOf(gameId);
+		
+		// subtract 1 to match with array position
+		int pitIdInput = Integer.valueOf(pitId) - 1;
 
 		try {
 
-			Kalah kalah = kalahService.playTurn(gameId, pitId);
+			Kalah kalah = kalahService.playTurn(gameIdInput, pitIdInput);
 			populatePitStatus(pitStatus, kalah.getPits());
 
 			Link uri = linkTo(methodOn(KalahController.class).startGame()).slash(kalah.getGameId()).withSelfRel();

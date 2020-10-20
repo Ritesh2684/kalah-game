@@ -19,7 +19,6 @@ public class KalahHelper {
 	public Kalah populateStonesInPits(Kalah kalah) {
 
 		int[] pits = kalah.getPits();
-
 		IntStream.range(0, KalahConstants.TOTAL_NUMBER_OF_PITS).forEach(i -> {
 			setPitValues(pits, i);
 		});
